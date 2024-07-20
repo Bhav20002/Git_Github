@@ -1,0 +1,197 @@
+git installation
+
+git commands
+
+git config --global user.name "name"
+Globally setting up name of our user.
+
+git config --global user.email "email"
+Globally setting up email of our user.
+
+git config --global core.editor "code --wait"
+Whenever there are errors in our file this command for "vscode" will simply help us to let fix these errors . 
+
+git config --global core.autocrlf
+
+
+git config --global -e
+Used to edit our global configs.
+
+git status -s 
+It is used to know current status of unstaged and staged files .
+
+git log --online 
+to know current status of saved point . 
+
+
+
+Basic setup has been done with these all above commands .
+
+
+stages:
+U -- untracked
+Your file is not being managed by github till now if we have this "U" sign near our file . 
+
+A -- added or staged
+Git ab aware hai ki this particular file bhi ab hai 
+
+C -- commited.
+Git ab apki file ko track kar rhaa hai last update kya thaa and kya kya last check points thee hamari file me . 
+
+M -- modified
+Showing that this file is now in modified stage.
+
+
+.gitignore is used to remove those files which we don not want to track further
+Just add the name of that file and simply our file now will be removed from all tracking purpose now .
+
+
+  ``` Going back to some of the previous saved points ```
+  git reset --hard HEAD~1 -->> ~n -- no of times we have to go back 
+  going back has three options "hard" , "soft" and "mixed" . 
+
+
+Git initialise helps to start tracking our files .
+
+Jab hum folder banate hai toh git ko kuch nahi pata hota apke folder ke baree me , isliye aapp waha pe git ko initialize karte hai , ab git ko permissions mili hai to git apke folder ko pehechanta hai , to ab kyuki git kaam kar skta hai is folder per ab ham yaha par untracked,tracked,modified,staged and saved checkpoints create kar skte hai .
+
+Git kuch interesting cheeze kar skta hai apki kitni files kis stage par hai 
+(a) check kar skte ho aapp kaunsi file kaunse stage pe hai  --> git status -s
+(b) check kar skte ho aapp kitne saved checkpoints hai --> git log
+                                                       --> git log --online 
+                                                       --> git log --graph
+Git status sirf unn files ka status show karti hai jo files committed nahi hai ya phir commit hone ke baadd ki gaye hai .
+Git status batata hai file ke changes ke baaree mein and uske state ke baaree mein aur ye sab tab hota hai jab  " before commit or after commit "
+
+Git status - Tells us about before and after stage of a file . 
+Git log -- Tells us about the saved checkpoints of a file(history of a file) .
+
+
+
+
+   ``` Branching ```
+--> Suppose given a piece of code of about 32 lines in a main file .
+    Now a developer is asked to create a code for creating "navbar" for that project .
+    He will not be allowed to work on the original "main" file because his/her code can burst or did not work properly resulting it to damaging the original "main" file .
+    Now we will provide him with a dublicate copy of "main" and he/she will write the code and will complete it's all work and complete testing over there . 
+    Upon his successfull completion of writing and testing code we will merge his dublicate copy of code with our original "main" file .
+    This is called "branching" .
+    Now we will delete his copy file of "main" and now we will merge the original 32 lines of code merging with new 132 lines of updated code 
+
+        ``` This is the original and perfect example of branching ```
+
+    Now if any another developer is asked to do some another work then he will work like in the same above manner .
+
+      Very basic example of branching . 
+
+
+One of the most important thing we need to know is "Git Conflict"
+
+When we are merging two files and if both files have same name and same content then there will be at line number 32 we have "var a = 12"of file "1"  & "var c = 32" of file "2" . 
+Now we will merge both files and we will get a conflict at line number 32 .
+We can clearly see this ongoing conflict between two files in image "Git_Conflict"
+
+It gives you three choices to adopt
+1- red line
+-> To accept the new file in which changes are being done . 
+2- green line
+-> To accept the old file in which changes are not being done .
+3- yellow line
+-> To accept both files and merge them .
+
+
+How to create a branching
+1- git branch <branch_name> 
+Eg :- git branch feature/navbar
+
+
+To merge to branches we need to first complete all the work done now we need to 
+a-First be at the main branch
+b-Write this command git merge <name of the branch we need to merge it with main> 
+Eg :- git merge feature/navbar
+
+Writing this command in terminal will make my feature/navbar branch to merge with main branch
+
+
+Now while having two files which we want to merge and in which "line 3" have different things which we are trying to merge then we will get 4 options 
+1 Accept Current Change  - jis branch me hai uss branch ke changes ko accept karna hai ...???
+2 Accept Incoming Change - jo branch merge karna chaa rhee hai kya uske changes ko accept karna hai ...???
+3 Accept Both Changes - ya phir donno hee accpet agar karne hot toh ...???
+4 Compare Changes - aur agar hume donno files ke changes ko compare karna ho toh ye use kar skte hai .
+
+
+After choosing any one from point 1-3 after that we have to again do "add changes" and then we have to "commit those changes" . 
+
+
+``` Important thing to know ```
+
+If we choose option 3rd then we would see "!" sign on our file indicating that our file is in a confused state . 
+To prevent it we need to do above step to add + commit .
+After that our file is merged with both the changes in it .
+
+
+git log --online 
+Tells us all the work which is done .
+
+git log --online --graph
+Represents all the work done in the form of a graph in our terminal screen .
+It shows complete breakdown of our files .
+
+
+
+Deleting a branch
+ git branch -d <branch_name>
+ eg:- git branch -d main -->> it will delete the main branch . 
+
+
+
+
+Stashing 
+Jab hum kisi branch mein kaam kar rhee ho and aappne kuch code likha ho and apne uss code ko commit nahi kiya hai aur aapp dusri branch me jane ki koshish karte ho to git apko bolta hai ki apne changes saved nhi kiye hai (koi check points nahi create kiye hai / commit nahi kiya hai) aur vo chan ges delete ho jayenge .
+Hum chahe toh hum unn changes ko delete hone de ya phir un changes ko hum draft hone de .
+Jab bhi hum draft karenge tab na hee changes delete honge na hee kahi beecchh me add honge but beecchh me hee kahi dale rahenge fir app uss branch mein jab wapis aye to wo changes wapis apply kar skte hai .
+
+
+Command to create a new branch and to switch into it 
+-->> git switch -C updated_Branch
+
+
+Now if we add something to our original main branch and then we try to switch to new "updated_Branch" then it would give us some error that "local errors would be overridden during checkout" . 
+And if we don't want to add or coomit our change then use command
+
+-->> git stash
+
+
+Ye command "git stash" ek stash me rakh rhaa hai ye sare changes ko apne paass memory me .
+And now we could do "git switch" -- after this it would not give us any error . 
+
+And now we could switch in any branch and could perform all the work we want to do .
+
+
+Now if we want to come back to out original file where we have applied "stash" we could not be able to see any changes done .
+To look into all the changes done ...
+command -->> git stash apply . 
+
+
+We could use stashing n number of times and all can be done very perfectly .
+
+If we want to delete the stash memory then we could write 
+command -->> git stash clear
+
+Applying this command our stash memory would be deleted and now if we want to switch again we could face the same error again . 
+
+
+
+Common Steps to be followed every time
+
+Main banda folder and initial files banyega
+Ab usse github pe daall de
+Now add collaborators
+Now all members will do cloning of that repo
+    ```[Very Important]```
+Now create your own branch --->>> git switch -C feature/adding
+Now do all the work you want to do in that same branch only 
+Complete hone parr commit dein 
+Now inform your teammate about the commit you have done
+Merger banda fetch karega and merge karega and re-push karega .
+
